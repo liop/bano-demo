@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useRef } from 'react'
+import RegionSelect from './components/RegionSelect/RegionSelect.jsx'
 
 function App() {
+  let selectEl = useRef(null)
+  let [region, setRegion] = useState("")
+  const showRegionSelect = () => {
+    selectEl.current.show()
+  }
+  const handleRegionSelect = (reg) => {
+    setRegion(reg)
+    selectEl.current.hiden()
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <section className="content">
+        <button className='content-btn' onClick={()=>showRegionSelect()} >select region</button>
+        <p>Region is: {region}</p>
+        <RegionSelect ref={selectEl} onSelect={handleRegionSelect} />
+        </section>
     </div>
   );
 }

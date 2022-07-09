@@ -1,0 +1,115 @@
+.regionbackgroud {
+  position: fixed;
+  left: 0;
+  bottom: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.regionBanel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: calc(100% - 40px);
+  background-color: white;
+  border-radius: 6px 6px 0 0;
+  font-family: 'Raleway';
+}
+
+.regionBanel.enter {
+
+}
+
+.panelheader {
+  flex-shrink: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  padding: 0 20px;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.panelSearch {
+  padding: 0 20px;
+  flex-shrink: 0;
+}
+
+.searchBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 18px 0 12px;
+  height: 40px;
+  background-color: #f8f8f8;
+  
+  border-radius: 8px;
+}
+
+.searchBar input {
+  flex: 1;
+  margin: 0 5px;
+  border: none;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  outline: none;
+  color: #2C2C2C;
+  background-color: transparent;
+}
+
+.searchBar .clearIcon {
+  cursor: pointer;
+}
+
+
+.panelContent {
+  margin: 40px 20px 0 20px;
+  flex: 1;
+  overflow: auto;
+}
+
+.regionList {
+  min-height: 100%;
+}
+
+.regionRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.regionRowTitle {
+  margin-left: 16px;
+  line-height: 26px;
+  
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  color: #2c2c2c;
+}
+.regionRow .rowIcon {
+  line-height: 20px;
+  width: 28px;
+}
+
+.nodata {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+
+  color: #C3C7CC;
+}
