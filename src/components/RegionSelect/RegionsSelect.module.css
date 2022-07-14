@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;1,700&display=swap');
+
 .regionbackgroud {
   position: fixed;
   left: 0;
@@ -19,20 +21,16 @@
   border-radius: 6px 6px 0 0;
   font-family: 'Raleway';
 }
-
-.regionBanel.enter {
-
-}
+ 
 
 .panelheader {
   flex-shrink: 0;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 80px;
   padding: 0 20px;
-  font-family: 'Raleway';
+  font-family: 'Raleway', sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
