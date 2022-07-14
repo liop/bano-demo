@@ -1,31 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import style from './RegionsSelect.module.css';
 import ReactDOM from 'react-dom';
 import { FixedSizeList as List } from 'react-window';
 import countryNames from 'country-json/src/country-by-abbreviation.json';
 // eslint-disable-next-line no-unused-vars
 import countryIcons from 'flag-icons';
-
-// 国家名称和图标数组
-const countries = countryNames.map((item) => {
-  return {
-    name: item.country,
-    icon: item.abbreviation.toLowerCase(),
-    lowerCase: item.country.toLowerCase(), // 搜索比较使用
-  };
-});
+ 
 
 // 单个国家或地区条目
 const Row = ({ index, style: innerStyle, data, onSelect }) => (
-  <div style={innerStyle} className={style.regionRow} onClick={() => onSelect(data[index].name)}>
-    <span className={`${style.rowIcon} fi fi-${data[index].icon}`}></span>
-    <div className={style.regionRowTitle}>{data[index].name}</div>
+  <div style={innerStyle} className={style.regionRow} onClick={() => onSelect(data[index].country)}>
+    <span className={`${style.rowIcon} fi fi-${data[index].abbreviation.toLowerCase()}`}></span>
+    <div className={style.regionRowTitle}>{data[index].country}</div>
   </div>
 );
 
 // 搜索框，支持清除
 function SearchBar(props) {
-  let { value, onChange } = props;
+  const { value, onChange } = props;
   const handleChange = (e) => onChange(e.target.value);
   const handleClear = () => onChange('');
   let showClose = false;
@@ -54,7 +46,7 @@ class RegionSelect extends React.Component {
     super(props);
     this.state = {
       query: '',
-      listData: countries,
+      listData: countryNames,
       visiableCount: 0,
     };
     
@@ -68,6 +60,7 @@ class RegionSelect extends React.Component {
       visiableCount: this.getVsisableCount()
     });
   };
+
   hiden = () => {
     this.setState({
       show: false,
@@ -78,10 +71,10 @@ class RegionSelect extends React.Component {
   getVsisableCount = () =>  Math.floor((document.body.clientHeight - 20 - 80 - 80) / 56) + 1
 
   handleQueryChange = (query) => {
-    let filtered = countries;
+    let filtered = countryNames;
     if (query) {
-      const name = query.toLowerCase();
-      filtered = countries.filter((country) => country.lowerCase.indexOf(name) !== -1);
+      const reg = new RegExp(query.trim(), 'i')
+      filtered = countryNames.filter((item) => reg.test(item.country));
     }
 
     this.setState({
@@ -95,7 +88,7 @@ class RegionSelect extends React.Component {
     const { show, query, listData, visiableCount } = this.state;
     if (!show) return null;
 
-    const getItemKey = (index, data) => data[index].name;
+    const getItemKey = (index, data) => data[index].country;
     // 高阶组件，添加 onSelect 支持
     const RowRender = (props) => Row({ ...props, onSelect });
     const listHeight = 56 * visiableCount;

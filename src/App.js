@@ -3,8 +3,8 @@ import { useState, useRef } from 'react'
 import RegionSelect from './components/RegionSelect/RegionSelect.jsx'
 
 function App() {
-  let selectEl = useRef(null)
-  let [region, setRegion] = useState("")
+  const selectEl = useRef(null)
+  const [region, setRegion] = useState("")
   const showRegionSelect = () => {
     selectEl.current.show()
   }
